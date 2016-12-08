@@ -29,9 +29,16 @@ public class Pathfinding : MonoBehaviour {
 		Node startNode = grid.NodeFromWorldPoint(from);
 		Node targetNode = grid.NodeFromWorldPoint(to);
 		startNode.parent = startNode;
-		
+
+		if (!startNode.walkable) {
+			startNode = grid.ClosestWalkableNode (startNode);
+		}
+		if (!targetNode.walkable) {
+			targetNode = grid.ClosestWalkableNode (targetNode);
+		}
 		
 		if (startNode.walkable && targetNode.walkable) {
+			
 			Heap<Node> openSet = new Heap<Node>(grid.MaxSize);
 			HashSet<Node> closedSet = new HashSet<Node>();
 			openSet.Add(startNode);
@@ -77,7 +84,7 @@ public class Pathfinding : MonoBehaviour {
 
 	
 	int TurningCost(Node from, Node to) {
-		return 0;
+		/*
 		Vector2 dirOld = new Vector2(from.gridX - from.parent.gridX, from.gridY - from.parent.gridY);
 		Vector2 dirNew = new Vector2(to.gridX - from.gridX, to.gridY - from.gridY);
 		if (dirNew == dirOld)
@@ -88,6 +95,9 @@ public class Pathfinding : MonoBehaviour {
 		else {
 			return 10;
 		}
+		*/
+
+		return 0;
 	}
 	
 	Vector2[] RetracePath(Node startNode, Node endNode) {
