@@ -53,7 +53,7 @@ public class Pathfinding : MonoBehaviour {
 						continue;
 					}
 					
-					int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour) + neighbour.movementPenalty +TurningCost(currentNode,neighbour);
+					int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour) + neighbour.movementPenalty;
 					if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour)) {
 						neighbour.gCost = newMovementCostToNeighbour;
 						neighbour.hCost = GetDistance(neighbour, targetNode);
@@ -73,21 +73,6 @@ public class Pathfinding : MonoBehaviour {
 		}
 		requestManager.FinishedProcessingPath(waypoints,pathSuccess);
 		
-	}
-
-	
-	int TurningCost(Node from, Node to) {
-		return 0;
-		Vector2 dirOld = new Vector2(from.gridX - from.parent.gridX, from.gridY - from.parent.gridY);
-		Vector2 dirNew = new Vector2(to.gridX - from.gridX, to.gridY - from.gridY);
-		if (dirNew == dirOld)
-			return 0;
-		else if (dirOld.x != 0 && dirOld.y != 0 && dirNew.x != 0 && dirNew.y != 0) {
-			return 5;
-		}
-		else {
-			return 10;
-		}
 	}
 	
 	Vector3[] RetracePath(Node startNode, Node endNode) {
