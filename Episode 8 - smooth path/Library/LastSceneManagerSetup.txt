@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/Pathfinding.unity
+  isLoaded: 1
+  isActive: 1
