@@ -8,6 +8,7 @@ public class Grid : MonoBehaviour {
 	public Vector2 gridWorldSize;
 	public float nodeRadius;
 	Node[,] grid;
+	List<Node> neighbours = new List<Node>();
 
 	float nodeDiameter;
 	int gridSizeX, gridSizeY;
@@ -33,7 +34,7 @@ public class Grid : MonoBehaviour {
 	}
 
 	public List<Node> GetNeighbours(Node node) {
-		List<Node> neighbours = new List<Node>();
+		neighbours.Clear();
 
 		for (int x = -1; x <= 1; x++) {
 			for (int y = -1; y <= 1; y++) {
