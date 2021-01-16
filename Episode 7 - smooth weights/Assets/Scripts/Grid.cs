@@ -12,6 +12,7 @@ public class Grid : MonoBehaviour {
 	public int obstacleProximityPenalty = 10;
 	Dictionary<int,int> walkableRegionsDictionary = new Dictionary<int, int>();
 	LayerMask walkableMask;
+	List<Node> neighbours = new List<Node>();
 
 	Node[,] grid;
 
@@ -121,7 +122,7 @@ public class Grid : MonoBehaviour {
 	}
 
 	public List<Node> GetNeighbours(Node node) {
-		List<Node> neighbours = new List<Node>();
+		neighbours.Clear();
 
 		for (int x = -1; x <= 1; x++) {
 			for (int y = -1; y <= 1; y++) {

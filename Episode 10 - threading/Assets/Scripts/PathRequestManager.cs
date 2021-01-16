@@ -32,7 +32,7 @@ public class PathRequestManager : MonoBehaviour {
 		ThreadStart threadStart = delegate {
 			instance.pathfinding.FindPath (request, instance.FinishedProcessingPath);
 		};
-		threadStart.Invoke ();
+		new Thread(threadStart).Start();
 	}
 
 	public void FinishedProcessingPath(PathResult result) {
