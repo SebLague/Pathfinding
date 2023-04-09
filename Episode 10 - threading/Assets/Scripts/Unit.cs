@@ -54,6 +54,8 @@ public class Unit : MonoBehaviour {
 		transform.LookAt (path.lookPoints [0]);
 
 		float speedPercent = 1;
+		
+		int pathHash = path.GetHashCode();
 
 		while (followingPath) {
 			Vector2 pos2D = new Vector2 (transform.position.x, transform.position.z);
@@ -82,6 +84,11 @@ public class Unit : MonoBehaviour {
 
 			yield return null;
 
+			// Check if the path has changed
+			if (path.GetHashCode() != pathHash) {
+				followingPath = false;
+			}
+			
 		}
 	}
 
